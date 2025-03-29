@@ -19,6 +19,11 @@ jobs:
           # For Android ARM 8 (added in your original build.sh as a specific case)
           - goos: android
             goarch: arm64
+          # x32 support for windows & linux
+          - goos: windows
+            goarch: 386
+          - goos: linux
+            goarch: 386
       fail-fast: false
 
     runs-on: ubuntu-latest

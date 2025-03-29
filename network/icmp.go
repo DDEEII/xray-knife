@@ -56,7 +56,7 @@ func (i *IcmpPacket) MeasureReplyDelay() error {
 		i.CustomInternetProtoID = os.Getpid() & 0xffff
 	}
 	if i.CustomSequenceNum == 0 {
-		i.CustomSequenceNum = rnd.Intn(int64(4294967290))
+		i.CustomSequenceNum = rnd.Int63n(int64(4294967290))
 	}
 	if len(i.Data) == 0 {
 		// Windows default DATA

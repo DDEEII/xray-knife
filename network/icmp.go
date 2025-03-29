@@ -17,8 +17,8 @@ import (
 
 type IcmpPacket struct {
 	DestIP                 net.IP
-	CustomInternetProtoID  int
-	CustomSequenceNum      int
+	CustomInternetProtoID  int64
+	CustomSequenceNum      int64
 	Data                   []byte
 	TestCount              uint16
 	DelayBetweenEachPacket uint16
@@ -56,7 +56,7 @@ func (i *IcmpPacket) MeasureReplyDelay() error {
 		i.CustomInternetProtoID = os.Getpid() & 0xffff
 	}
 	if i.CustomSequenceNum == 0 {
-		i.CustomSequenceNum = rnd.Intn(4294967290)
+		i.CustomSequenceNum = rnd.Intn(int64(4294967290))
 	}
 	if len(i.Data) == 0 {
 		// Windows default DATA
